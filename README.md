@@ -35,20 +35,20 @@ While the core system could process the raw "In" and "Out" entries, I opted to r
 * **The Fix**: Implemented a `TEXT(H2, "hh:mm") = TEXT(E2, "hh:mm")` validation formula to verify alignment down to the exact minute.
 * **Unique Keys**: Developed a custom Unique Key column by concatenating **Employee Name + Date** to ensure precise VLOOKUP alignment between calculated data and master logs.
 
-![Restructured Data List](Restructure%20Data.png)
+![Restructured Data List](./Restructured%20Data/Restructure%20Data.png)
 
 ### 3. Data Auditing and Edge Cases
 Identified significant inconsistencies in the biometric logs, such as duplicate entries for specific employees (e.g., Miguel Santoro and Gabrielle Santos).
 * **The Logic Solution**: Developed a fallback formula: `IF({DURATION} = 0, 0, {DURATION} - 1)` and `IF({DURATION} = 0, 0, IF( {DAY TYPE (from PAY CYCLES AND HOLIDAY SCHEDULE)} = "Regular Holiday", 8 + ({DURATION} - 1), {DURATION} - 1) )`. This ensured the system relied on validated durations to calculate wages accurately despite noisy raw logs.
 
-![Airtable-Attendance-Table](Airtable%20Attendance%20records%20table.png)
+![Airtable-Attendance-Table](./Airtable/Airtable%20Attendance%20records%20table.png)
 
 ### 4. Payroll Logic and Compliance
 The system follows strict Philippine Labor standards for salary computation:
 * **Normal Day**: Duration - 1 hour (unpaid lunch break).
 * **Regular Holiday**: 8 hours (paid automatically) + total hours worked if duty was rendered.
 
-![Airtable-Payroll-Records](2nd-PC-December-2025.png)
+![Airtable-Payroll-Records](./Airtable/2nd-PC-December-2025.png)
 
 ---
 
